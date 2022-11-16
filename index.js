@@ -1,8 +1,8 @@
 var express = require("express");
 var cors = require("cors");
 var app = express();
-var bodyParser = require("body-parser");
-var jsonParser = bodyParser.json();
+// var bodyParser = require("body-parser");
+// var jsonParser = bodyParser.json();
   var sql = require("mssql");
 
  // config for your database
@@ -17,7 +17,7 @@ app.use(cors());
 app.get("/", function (req, res, next) {
   res.json("hi this is API");
 });
-app.get("/test",jsonParser, function (req, res) {
+app.get("/test", function (req, res) {
   // connect to your database
   sql.connect(config, function (err) {
     if (err) console.log(err);
@@ -30,8 +30,8 @@ app.get("/test",jsonParser, function (req, res) {
       if (err) console.log(err);
 
       // send records as a response
-      res.send(results.recordset);
-      console.log(results.recordset)
+      res.send(results.recordsets);
+      // console.log(results.recordset)
     });
   });
 });
